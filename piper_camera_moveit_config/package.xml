@@ -6,7 +6,7 @@
   <description>
      An automatically generated package with all the configuration and launch files for using the piper_description with the MoveIt Motion Planning Framework
   </description>
-  <maintainer email="shiqi.zhao@agilex.ai">shiqi.zhao</maintainer>
+  <maintainer email="zfei@zju.edu.cn">zfei</maintainer>
 
   <license>BSD</license>
 
@@ -14,7 +14,7 @@
   <url type="bugtracker">https://github.com/ros-planning/moveit2/issues</url>
   <url type="repository">https://github.com/ros-planning/moveit2</url>
 
-  <author email="shiqi.zhao@agilex.ai">shiqi.zhao</author>
+  <author email="zfei@zju.edu.cn">zfei</author>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 

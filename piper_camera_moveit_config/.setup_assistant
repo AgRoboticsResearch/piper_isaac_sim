@@ -5,9 +5,9 @@ moveit_setup_assistant_config:
   srdf:
     relative_path: config/piper_description.srdf
   package_settings:
-    author_name: shiqi.zhao
-    author_email: shiqi.zhao@agilex.ai
-    generated_timestamp: 1732263047
+    author_name: zfei
+    author_email: zfei@zju.edu.cn
+    generated_timestamp: 1743388268
   control_xacro:
     command:
       - position
