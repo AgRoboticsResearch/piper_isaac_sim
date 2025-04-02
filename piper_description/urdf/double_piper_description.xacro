@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot
+  name="double_piper"
+  xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Define a world link and a common base platform for both robots -->
+  <link name="world"/>
+
+  <link name="platform_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="10.0" />
+      <inertia ixx="1.0" ixy="0" ixz="0" iyy="1.0" iyz="0" izz="1.0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.5 1.0 0.05" />
+      </geometry>
+      <material name="gray">
+        <color rgba="0.5 0.5 0.5 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.5 1.0 0.05" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <!-- Attach platform to world -->
+  <joint name="world_to_platform" type="fixed">
+    <parent link="world"/>
+    <child link="platform_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Define the first piper robot - placed on left (negative Y) -->
+  <xacro:property name="piper1_prefix" value="piper1_" />
+  
+  <link name="${piper1_prefix}base_link">
+    <!-- Same inertial, visual, and collision properties as in piper_description.xacro's base_link -->
+    <inertial>
+      <origin
+        xyz="-0.00973928490005031 1.8312708928633E-06 0.0410140167677137"
+        rpy="0 0 0" />
+      <mass
+        value="0.00001" />
+      <inertia
+        ixx="0.000226592553127906"
+        ixy="-7.33974356968813E-08"
+        ixz="2.13221970218123E-06"
+        iyy="0.000269447877479622"
+        iyz="8.15167478685076E-09"
+        izz="0.000222318286704" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://piper_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://piper_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <!-- Connect first piper base to platform -->
+  <joint name="platform_to_piper1_joint" type="fixed">
+    <parent link="platform_link"/>
+    <child link="${piper1_prefix}base_link"/>
+    <origin xyz="0 -0.25 0.05" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Define the second piper robot - placed on right (positive Y) -->
+  <xacro:property name="piper2_prefix" value="piper2_" />
+  
+  <link name="${piper2_prefix}base_link">
+    <!-- Same inertial, visual, and collision properties as in piper_description.xacro's base_link -->
+    <inertial>
+      <origin
+        xyz="-0.00973928490005031 1.8312708928633E-06 0.0410140167677137"
+        rpy="0 0 0" />
+      <mass
+        value="0.00001" />
+      <inertia
+        ixx="0.000226592553127906"
+        ixy="-7.33974356968813E-08"
+        ixz="2.13221970218123E-06"
+        iyy="0.000269447877479622"
+        iyz="8.15167478685076E-09"
+        izz="0.000222318286704" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://piper_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://piper_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <!-- Connect second piper base to platform -->
+  <joint name="platform_to_piper2_joint" type="fixed">
+    <parent link="platform_link"/>
+    <child link="${piper2_prefix}base_link"/>
+    <origin xyz="0 0.25 0.05" rpy="0 0 0"/>
+  </joint>
+  
+  <!-- For the first robot, use the standard URDF with appropriate prefix -->
+  <!-- The first robot's joints and links will use piper1_ prefix -->
+  <xacro:include filename="$(find piper_description)/urdf/piper1_robot.xacro" />
+  
+  <!-- For the second robot, use the standard URDF with appropriate prefix -->
+  <!-- The second robot's joints and links will use piper2_ prefix -->
+  <xacro:include filename="$(find piper_description)/urdf/piper2_robot.xacro" />
+
+  <!-- Gazebo plugin for the combined robot -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/double_piper</robotNamespace>
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+</robot>
