@@ -1,0 +1,58 @@
+# This config file is used by ros2_control
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    arm1_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+
+    arm2_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+
+    arm1_gripper_controller:
+      type: position_controllers/GripperActionController
+
+
+    arm2_gripper_controller:
+      type: position_controllers/GripperActionController
+
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+arm1_controller:
+  ros__parameters:
+    joints:
+      - piper1_joint1
+      - piper1_joint2
+      - piper1_joint3
+      - piper1_joint4
+      - piper1_joint5
+      - piper1_joint6
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+arm2_controller:
+  ros__parameters:
+    joints:
+      - piper2_joint2
+      - piper2_joint3
+      - piper2_joint4
+      - piper2_joint5
+      - piper2_joint1
+      - piper2_joint6
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+arm1_gripper_controller:
+  ros__parameters:
+    joint: piper1_joint7
+arm2_gripper_controller:
+  ros__parameters:
+    joint: piper2_joint7

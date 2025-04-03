@@ -1,0 +1,19 @@
+# Default initial positions for double_piper's ros2_control fake system
+
+initial_positions:
+  piper1_joint1: 0
+  piper1_joint2: 0
+  piper1_joint3: 0
+  piper1_joint4: 0
+  piper1_joint5: 0
+  piper1_joint6: 0
+  piper1_joint7: 0
+  piper1_joint8: 0
+  piper2_joint1: 0
+  piper2_joint2: 0
+  piper2_joint3: 0
+  piper2_joint4: 0
+  piper2_joint5: 0
+  piper2_joint6: 0
+  piper2_joint7: 0
+  piper2_joint8: 0
